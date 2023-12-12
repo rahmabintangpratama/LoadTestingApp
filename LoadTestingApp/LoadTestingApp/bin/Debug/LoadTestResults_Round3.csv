@@ -1,7 +1,0 @@
-RequestNumber,StatusCode,ReasonPhrase,ResponseTime(ms),RoundNumber
-1,200,OK,11238,1
-1,200,OK,4448,2
-2,200,OK,4465,2
-1,200,OK,2961,3
-2,200,OK,6785,3
-3,200,OK,4029,3
