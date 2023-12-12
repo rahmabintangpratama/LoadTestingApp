@@ -265,7 +265,6 @@ namespace LoadTestingApp
         {
             StringBuilder helpMessage = new StringBuilder();
 
-            // Tambahkan panduan dalam bahasa Inggris
             helpMessage.AppendLine("User Guide for Load Testing Application");
             helpMessage.AppendLine();
             helpMessage.AppendLine("1. Enter the URL in the input box.");
