@@ -265,15 +265,14 @@ namespace LoadTestingApp
         {
             StringBuilder helpMessage = new StringBuilder();
 
-            helpMessage.AppendLine("User Guide for Load Testing Application");
+             helpMessage.AppendLine("User Guide for Load Testing Application");
             helpMessage.AppendLine();
-            helpMessage.AppendLine("1. Enter the URL in the input box.");
+            helpMessage.AppendLine("1. Enter the URL in the column box.");
             helpMessage.AppendLine("2. Set the number of requests using the numeric up-down control.");
             helpMessage.AppendLine("3. Set the timeout value using the numeric up-down control.");
-            helpMessage.AppendLine("4. Click the 'Start' button to run the load test.");
-            helpMessage.AppendLine("5. The application will display the CPU and RAM usage during the test.");
-            helpMessage.AppendLine("6. After the test, the results, including response times, will be shown.");
-            helpMessage.AppendLine("7. The application will provide a simple evaluation of the load testing result.");
+            helpMessage.AppendLine("4. Click the 'Start' button to start the load test.");
+            helpMessage.AppendLine("5. The application will display the CPU and RAM usage of the computer use during the test.");
+            helpMessage.AppendLine("6. After the test, total, successfull, unsuccessfull request, and the rate of total request(in ms) will be shown.");
 
             return helpMessage.ToString();
         }
