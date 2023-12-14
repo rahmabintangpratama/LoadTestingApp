@@ -38,20 +38,30 @@ The Load Testing Application is a tool designed for evaluating the performance o
 
 ## Usage
 1. Enter Target URL:
-   In the application, enter the target URL in the designated text box.
+   - In the application, enter the target URL in the designated text box.
+
 2. Set Number of Requests:
-   Use the numeric up-down control to set the desired number of requests.
+   - Use the numeric up-down control to set the desired number of requests.
+
 3. Set Timeout Value:
-   Use the numeric up-down control to set the maximum time allowed for each request.
+   - Use the numeric up-down control to set the maximum time allowed for each request.
+
 4. Start Load Test:
-   Click the 'Start' button to initiate the load test.
+   - Click the 'Start' button to initiate the load test.
+
 5. Monitor Resource Usage:
-   Real-time CPU and RAM of the computer usage during the test will be displayed in the output area.
+   - Real-time CPU and RAM of the computer usage during the test will be displayed in the output area.
+
 6. View Results:
-   After the test, the application will display:
-   Computer's CPU Usage (in percentage).
-   Computer's RAM Usage (in megabytes).
-   Detailed results for each request, including:
-   Request Number, HTTP Status Code, Reason Phrase, Response Time (in milliseconds), Round Number.
+   - After the test, the application will display:
+   - Computer's CPU Usage (in percentage).
+   - Computer's RAM Usage (in megabytes).
+   - Detailed results for each request, including:
+     - Request Number.
+     - HTTP Status Code.
+     - Reason Phrase.
+     - Response Time (in milliseconds).
+     - Round Number.
+
 7. Export Results:
-   Optionally, export the load test results to a CSV file using the 'Export' button.
+   - Optionally, export the load test results to a CSV file using the 'Export' button.
