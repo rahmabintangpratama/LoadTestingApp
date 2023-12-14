@@ -128,9 +128,6 @@ namespace LoadTesting
                     HttpResponseMessage response = await httpClient.GetAsync(url, cts.Token);
                     TimeSpan responseTime = stopwatch.Elapsed;
 
-                    // Handle the response if needed
-                    // Example: string content = await response.Content.ReadAsStringAsync();
-
                     // Perbarui properti RoundNumber
                     int roundNumber = currentRoundNumber; // Simpan nilai roundNumber saat ini
                     return new List<LoadTestResult>
@@ -314,7 +311,7 @@ namespace LoadTesting
             helpMessage.AppendLine("      - Reason Phrase.");
             helpMessage.AppendLine("      - Response Time (in milliseconds).");
             helpMessage.AppendLine("      - Round Number.");
-            helpMessage.AppendLine("7. Optionally, export the load test results to a CSV file using the 'Export' button.");
+            helpMessage.AppendLine("7. Optionally, export the load test results to a CSV file using the 'Export' button. The result will display all the evaluation data for each round.");
 
             return helpMessage.ToString();
         }
@@ -424,7 +421,7 @@ namespace LoadTesting
 
     public class EvaluationData
     {
-        public int RoundNumber { get; set; } // Tambahkan properti RoundNumber di sini
+        public int RoundNumber { get; set; }
         public double AverageResponseTime { get; set; }
         public int TotalRequests { get; set; }
         public int SuccessfulRequests { get; set; }
