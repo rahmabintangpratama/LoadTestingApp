@@ -390,11 +390,11 @@ namespace LoadTesting
                 foreach (var evalData in allEvaluatedData)
                 {
                     // Gunakan evalData.RoundNumber untuk mendapatkan nomor putaran yang benar
-                    csvContent.AppendLine($"Round {evalData.RoundNumber - 1} of Evaluation Data:");
-                    csvContent.AppendLine($"Average Response Time: {evalData.AverageResponseTime} ms");
-                    csvContent.AppendLine($"Total Requests: {evalData.TotalRequests}");
-                    csvContent.AppendLine($"Successful Requests: {evalData.SuccessfulRequests}");
-                    csvContent.AppendLine($"Failed Requests: {evalData.FailedRequests}");
+                    csvContent.AppendLine($"Summary of Round {evalData.RoundNumber - 1}:");
+                    csvContent.AppendLine($"Average Response Time:, {evalData.AverageResponseTime.ToString("F0")} ms");
+                    csvContent.AppendLine($"Total Requests:, {evalData.TotalRequests}");
+                    csvContent.AppendLine($"Successful Requests:, {evalData.SuccessfulRequests}");
+                    csvContent.AppendLine($"Failed Requests:, {evalData.FailedRequests}");
                     csvContent.AppendLine(); // Baris kosong sebagai pemisah
                 }
 
