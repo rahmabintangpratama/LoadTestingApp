@@ -8,3 +8,13 @@ C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 4\Lo
 C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 4\LoadTesting\LoadTesting\obj\Debug\LoadTesting.csproj.CoreCompileInputs.cache
 C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 4\LoadTesting\LoadTesting\obj\Debug\LoadTesting.exe
 C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 4\LoadTesting\LoadTesting\obj\Debug\LoadTesting.pdb
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\bin\Debug\LoadTesting.exe.config
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\bin\Debug\LoadTesting.exe
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\bin\Debug\LoadTesting.pdb
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.csproj.AssemblyReference.cache
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.LoadTesting.resources
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.Properties.Resources.resources
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.csproj.GenerateResource.cache
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.csproj.CoreCompileInputs.cache
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.exe
+C:\Users\acer\Documents\Semester 5\Pengujian Kualitas Perangkat Lunak\versi 6\LoadTesting\LoadTesting\obj\Debug\LoadTesting.pdb

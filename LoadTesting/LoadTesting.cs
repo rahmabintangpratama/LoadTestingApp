@@ -300,7 +300,7 @@ namespace LoadTesting
             helpMessage.AppendLine("1. Enter the target URL in the URL column.");
             helpMessage.AppendLine("2. Set the number of requests using the numeric up-down control.");
             helpMessage.AppendLine("3. Set the timeout value (maximum time allowed for each request) using the numeric up-down control.");
-            helpMessage.AppendLine("4. Click the 'Start' button to initiate the load test.");
+            helpMessage.AppendLine("4. Click the 'Start' button to initiate the load testing.");
             helpMessage.AppendLine("5. Monitor real-time CPU and RAM of the computer usage during the test in the output area.");
             helpMessage.AppendLine("6. After the test, the output will display:");
             helpMessage.AppendLine("   a. Computer's CPU Usage (in percentage).");
@@ -311,7 +311,64 @@ namespace LoadTesting
             helpMessage.AppendLine("      - Reason Phrase.");
             helpMessage.AppendLine("      - Response Time (in milliseconds).");
             helpMessage.AppendLine("      - Round Number.");
-            helpMessage.AppendLine("7. Optionally, export the load test results to a CSV file using the 'Export' button. The result will display all the evaluation data for each round.");
+            helpMessage.AppendLine("7. Optionally, export the load testing results to a CSV file using the 'Export' button. The result will display all the evaluation data for each round.");
+            helpMessage.AppendLine("8. Click the 'Clear' button to clear the output area and reset the test.");
+
+            return helpMessage.ToString();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            ShowInfoMessageBox();
+        }
+
+        private void ShowInfoMessageBox()
+        {
+            string helpMessage = GenerateInfoMessage();
+            MessageBox.Show(helpMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private string GenerateInfoMessage()
+        {
+            StringBuilder helpMessage = new StringBuilder();
+
+            helpMessage.AppendLine("Load Testing:");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("\"Load testing is a performance testing technique in which the system's response is measured under various load conditions. This testing helps determine how the software behaves when multiple users access it simultaneously. Load testing is essential to simulate concurrent access to a website application.\"[1]");
+            helpMessage.AppendLine("[1] D. I. Permatasari, B. Santoso, N. Ningtias, M. H. Y. R., R. Atika, N. Widad, I. Maulana and A. A. R., \"Pengukuran Throughput Load Testing Menggunakan Test Case Sampling Gorilla Testing,\" in Seminar Nasional Sistem Informasi (SENASIF), Malang, 2019.");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("Metrics:");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("1. CPU Usage:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        The CPU usage metric represents the percentage of the computer's processing power utilized during the load testing.");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        CPU Usage = Current CPU Usage");
+            helpMessage.AppendLine("2. RAM Usage:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        The RAM usage metric indicates the amount of computer memory used during the load testing.");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        RAM Usage = Current RAM Usage");
+            helpMessage.AppendLine("3. Total Requests:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        Total Requests is the sum of all requests sent during a single testing round.");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        Total Requests = Number of Requests Sent");
+            helpMessage.AppendLine("4. Successful Requests:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        Successful Requests is the sum of requests with an HTTP status code of 200 (OK).");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        Successful Requests = Number of Requests with HTTP Status Code 200 (OK)");
+            helpMessage.AppendLine("5. Failed Requests:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        Failed Requests is the sum of requests that failed, calculated as Total Requests minus Successful Requests.");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        Failed Requests = Total Requests−Successful Requests");
+            helpMessage.AppendLine("6. Average Response Time:");
+            helpMessage.AppendLine("    a. Description:");
+            helpMessage.AppendLine("        Average Response Time represents the mean response time per request during a testing round.");
+            helpMessage.AppendLine("    b. Formula:");
+            helpMessage.AppendLine("        Average Response Time = Total Response Time/Total Requests");
 
             return helpMessage.ToString();
         }
@@ -325,7 +382,7 @@ namespace LoadTesting
             }
             else
             {
-                MessageBox.Show("There is no load test data that can be exported.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("There is no load testing data that can be exported.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -356,7 +413,7 @@ namespace LoadTesting
         {
             if (results == null || results.Count == 0)
             {
-                MessageBox.Show("There is no load test result data that can be exported.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("There is no load testing result data that can be exported.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -370,6 +427,13 @@ namespace LoadTesting
                 }
 
                 StringBuilder csvContent = new StringBuilder();
+
+                csvContent.AppendLine($"Load Testing");
+                csvContent.AppendLine();
+
+                csvContent.AppendLine($"The Load Testing Result of URL:,{inputUrl.Text}");
+                csvContent.AppendLine();
+
                 // Tambahkan header CSV sesuai dengan urutan kolom yang diinginkan
                 csvContent.AppendLine("Request Number,Http Status Code,Reason Phrase,Response Time (ms),Round Number");
 
@@ -391,14 +455,12 @@ namespace LoadTesting
                 {
                     // Gunakan evalData.RoundNumber untuk mendapatkan nomor putaran yang benar
                     csvContent.AppendLine($"Summary of Round {evalData.RoundNumber - 1}:");
-                    csvContent.AppendLine($"Average Response Time:, {evalData.AverageResponseTime.ToString("F0")} ms");
-                    csvContent.AppendLine($"Total Requests:, {evalData.TotalRequests}");
-                    csvContent.AppendLine($"Successful Requests:, {evalData.SuccessfulRequests}");
-                    csvContent.AppendLine($"Failed Requests:, {evalData.FailedRequests}");
-                    csvContent.AppendLine(); // Baris kosong sebagai pemisah
+                    csvContent.AppendLine($"Average Response Time (ms):,{evalData.AverageResponseTime.ToString("F0")}");
+                    csvContent.AppendLine($"Total Requests:,{evalData.TotalRequests}");
+                    csvContent.AppendLine($"Successful Requests:,{evalData.SuccessfulRequests}");
+                    csvContent.AppendLine($"Failed Requests:,{evalData.FailedRequests}");
+                    csvContent.AppendLine();
                 }
-
-                csvContent.AppendLine($"The Load Testing Result of URL: {inputUrl.Text}");
 
                 System.IO.File.WriteAllText(filePath, csvContent.ToString());
             }
@@ -408,6 +470,14 @@ namespace LoadTesting
             }
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            outputTextBox.Clear();
+            allEvaluatedData.Clear();
+            allLoadTestResults.Clear();
+            roundNumbers.Clear();
+            currentRoundNumber = 1;
+        }
     }
 
     public class LoadTestResult

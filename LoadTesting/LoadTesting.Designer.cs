@@ -40,6 +40,8 @@
             this.timeoutNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeoutNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -141,7 +143,7 @@
             // btnHelp
             // 
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.Location = new System.Drawing.Point(146, 466);
+            this.btnHelp.Location = new System.Drawing.Point(16, 466);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(111, 44);
             this.btnHelp.TabIndex = 13;
@@ -152,7 +154,7 @@
             // btnExport
             // 
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(503, 466);
+            this.btnExport.Location = new System.Drawing.Point(614, 466);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(174, 44);
             this.btnExport.TabIndex = 14;
@@ -160,11 +162,35 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfo.Location = new System.Drawing.Point(213, 466);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(111, 44);
+            this.btnInfo.TabIndex = 15;
+            this.btnInfo.Text = "Info";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(411, 466);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(111, 44);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // LoadTesting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 541);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.lblInputTimeOut);
@@ -203,6 +229,8 @@
         private System.Windows.Forms.NumericUpDown timeoutNumericUpDown;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
