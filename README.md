@@ -65,3 +65,6 @@ The Load Testing Application is a tool designed for evaluating the performance o
 
 7. Export Results:
    - Optionally, export the load test results to a CSV file using the 'Export' button.
+
+8. Clear Results:
+   - Click the 'Clear' button to clear the output area and reset the test.
