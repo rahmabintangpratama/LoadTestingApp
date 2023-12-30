@@ -324,53 +324,53 @@ namespace LoadTesting
 
         private void ShowInfoMessageBox()
         {
-            string helpMessage = GenerateInfoMessage();
-            MessageBox.Show(helpMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string infoMessage = GenerateInfoMessage();
+            MessageBox.Show(infoMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private string GenerateInfoMessage()
         {
-            StringBuilder helpMessage = new StringBuilder();
+            StringBuilder infoMessage = new StringBuilder();
 
-            helpMessage.AppendLine("Load Testing:");
-            helpMessage.AppendLine();
-            helpMessage.AppendLine("\"Load testing is a performance testing technique in which the system's response is measured under various load conditions. This testing helps determine how the software behaves when multiple users access it simultaneously. Load testing is essential to simulate concurrent access to a website application.\"[1]");
-            helpMessage.AppendLine("[1] D. I. Permatasari, B. Santoso, N. Ningtias, M. H. Y. R., R. Atika, N. Widad, I. Maulana and A. A. R., \"Pengukuran Throughput Load Testing Menggunakan Test Case Sampling Gorilla Testing,\" in Seminar Nasional Sistem Informasi (SENASIF), Malang, 2019.");
-            helpMessage.AppendLine();
-            helpMessage.AppendLine("Metrics:");
-            helpMessage.AppendLine();
-            helpMessage.AppendLine("1. CPU Usage:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        The CPU usage metric represents the percentage of the computer's processing power utilized during the load testing.");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        CPU Usage = Current CPU Usage");
-            helpMessage.AppendLine("2. RAM Usage:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        The RAM usage metric indicates the amount of computer memory used during the load testing.");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        RAM Usage = Current RAM Usage");
-            helpMessage.AppendLine("3. Total Requests:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        Total Requests is the sum of all requests sent during a single testing round.");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        Total Requests = Number of Requests Sent");
-            helpMessage.AppendLine("4. Successful Requests:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        Successful Requests is the sum of requests with an HTTP status code of 200 (OK).");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        Successful Requests = Number of Requests with HTTP Status Code 200 (OK)");
-            helpMessage.AppendLine("5. Failed Requests:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        Failed Requests is the sum of requests that failed, calculated as Total Requests minus Successful Requests.");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        Failed Requests = Total Requests−Successful Requests");
-            helpMessage.AppendLine("6. Average Response Time:");
-            helpMessage.AppendLine("    a. Description:");
-            helpMessage.AppendLine("        Average Response Time represents the mean response time per request during a testing round.");
-            helpMessage.AppendLine("    b. Formula:");
-            helpMessage.AppendLine("        Average Response Time = Total Response Time/Total Requests");
+            infoMessage.AppendLine("Load Testing:");
+            infoMessage.AppendLine();
+            infoMessage.AppendLine("\"Load testing is a performance testing technique in which the system's response is measured under various load conditions. This testing helps determine how the software behaves when multiple users access it simultaneously. Load testing is essential to simulate concurrent access to a website application.\"[1]");
+            infoMessage.AppendLine("[1] D. I. Permatasari, B. Santoso, N. Ningtias, M. H. Y. R., R. Atika, N. Widad, I. Maulana and A. A. R., \"Pengukuran Throughput Load Testing Menggunakan Test Case Sampling Gorilla Testing,\" in Seminar Nasional Sistem Informasi (SENASIF), Malang, 2019.");
+            infoMessage.AppendLine();
+            infoMessage.AppendLine("Metrics:");
+            infoMessage.AppendLine();
+            infoMessage.AppendLine("1. CPU Usage:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        The CPU usage metric represents the percentage of the computer's processing power utilized during the load testing.");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        CPU Usage = Current CPU Usage");
+            infoMessage.AppendLine("2. RAM Usage:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        The RAM usage metric indicates the amount of computer memory used during the load testing.");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        RAM Usage = Current RAM Usage");
+            infoMessage.AppendLine("3. Total Requests:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        Total Requests is the sum of all requests sent during a single testing round.");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        Total Requests = Number of Requests Sent");
+            infoMessage.AppendLine("4. Successful Requests:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        Successful Requests is the sum of requests with an HTTP status code of 200 (OK).");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        Successful Requests = Number of Requests with HTTP Status Code 200 (OK)");
+            infoMessage.AppendLine("5. Failed Requests:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        Failed Requests is the sum of requests that failed, calculated as Total Requests minus Successful Requests.");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        Failed Requests = Total Requests−Successful Requests");
+            infoMessage.AppendLine("6. Average Response Time:");
+            infoMessage.AppendLine("    a. Description:");
+            infoMessage.AppendLine("        Average Response Time represents the mean response time per request during a testing round.");
+            infoMessage.AppendLine("    b. Formula:");
+            infoMessage.AppendLine("        Average Response Time = Total Response Time/Total Requests");
 
-            return helpMessage.ToString();
+            return infoMessage.ToString();
         }
 
         private void btnExport_Click(object sender, EventArgs e)
