@@ -40,11 +40,11 @@ The Load Testing Application is a tool designed for evaluating the performance o
 1. Enter Target URL:
    - In the application, enter the target URL in the designated text box.
 
-2. Set Number of Requests:
-   - Use the numeric up-down control to set the desired number of requests.
+2. Enter Number of Requests:
+   - Enter the number of request in the designated text box to set the desired number of requests.
 
-3. Set Timeout Value:
-   - Use the numeric up-down control to set the maximum time allowed for each request.
+3. Enter Timeout Value:
+   - Enter the timeout value in the designated text box to set the maximum time allowed for each request.
 
 4. Start Load Test:
    - Click the 'Start' button to initiate the load test.
