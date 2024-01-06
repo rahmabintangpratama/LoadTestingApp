@@ -20,33 +20,65 @@ namespace LoadTesting
         private PerformanceCounter ramCounter;
         private List<LoadTestResult> allLoadTestResults = new List<LoadTestResult>();
         private List<LoadTestResult> currentTestResults = new List<LoadTestResult>();
-        private int currentRoundNumber = 1; // Default round number is 1
+        private int currentRoundNumber = 1;
         private List<int> roundNumbers = new List<int>();
         private EvaluationData currentEvaluationData; // Properti untuk menyimpan data evaluasi saat ini
         private List<EvaluationData> allEvaluatedData = new List<EvaluationData>(); // Koleksi semua data yang telah dievaluasi
-        private int currentEvaluationRoundNumber = 1; // Default evaluation round number is 1
+        private int currentEvaluationRoundNumber = 1;
 
         public LoadTesting()
         {
             InitializeComponent();
             this.Load += Form1_Load;
+            textBoxInputRequest.KeyPress += new KeyPressEventHandler(textBoxOnlyNumber_KeyPress);
+            textBoxInputTimeout.KeyPress += new KeyPressEventHandler(textBoxOnlyNumber_KeyPress);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Inisialisasi counters
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
             ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
         }
 
-        private void numericUpAndDown(object sender, EventArgs e)
+        private void textBoxOnlyNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            // Hanya izinkan input angka dan kontrol khusus (seperti Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
-        private void output(object sender, EventArgs e)
+        private void textBoxInputRequest_TextChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBoxInputRequest.Text) && !int.TryParse(textBoxInputRequest.Text, out _))
+            {
+                MessageBox.Show("Please enter a valid number for requests.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxInputRequest.Text = string.Empty;
+            }
 
+            if (textBoxInputRequest.Text.Length > 8)
+            {
+                MessageBox.Show("Input request should be limited to 8 digits.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxInputRequest.Text = textBoxInputRequest.Text.Substring(0, 8);
+                textBoxInputRequest.SelectionStart = textBoxInputRequest.Text.Length;
+            }
+        }
+
+        private void textBoxInputTimeout_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxInputTimeout.Text) && !int.TryParse(textBoxInputTimeout.Text, out _))
+            {
+                MessageBox.Show("Please enter a valid number for timeout.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxInputTimeout.Text = string.Empty;
+            }
+
+            if (textBoxInputTimeout.Text.Length > 5)
+            {
+                MessageBox.Show("Input timeout should be limited to 5 digits.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxInputTimeout.Text = textBoxInputTimeout.Text.Substring(0, 5);
+                textBoxInputTimeout.SelectionStart = textBoxInputTimeout.Text.Length;
+            }
         }
 
         private async void startButton_Click(object sender, EventArgs e)
@@ -58,24 +90,41 @@ namespace LoadTesting
                 return;
             }
 
-            string url = inputUrl.Text;
+            string url = textBoxInputUrl.Text;
 
-            // Validasi jumlah request
-            if (!int.TryParse(numericUpDown.Value.ToString(), out int numberOfRequests) || numberOfRequests <= 0)
-            {
-                MessageBox.Show("Please enter a valid number of requests.");
-                return;
-            }
-
-            // Validasi input URL
+            // Validasi input URL tidak kosong
             if (string.IsNullOrWhiteSpace(url))
             {
                 MessageBox.Show("Please enter a valid URL.");
                 return;
             }
 
+            // Validasi input Request tidak kosong
+            if (string.IsNullOrWhiteSpace(textBoxInputRequest.Text))
+            {
+                MessageBox.Show("Please enter a valid number of requests.");
+                return;
+            }
+
+            // Validasi input Timeout tidak kosong
+            if (string.IsNullOrWhiteSpace(textBoxInputTimeout.Text))
+            {
+                MessageBox.Show("Please enter a valid timeout value.");
+                return;
+            }
+
+            int inputRequest = Convert.ToInt32(textBoxInputRequest.Text);
+            int inputTimeout = Convert.ToInt32(textBoxInputTimeout.Text);
+
+            // Validasi jumlah request
+            if (!int.TryParse(inputRequest.ToString(), out int numberOfRequests) || numberOfRequests <= 0)
+            {
+                MessageBox.Show("Please enter a valid number of requests.");
+                return;
+            }
+
             // Validasi input Timeout
-            if (!int.TryParse(timeoutNumericUpDown.Value.ToString(), out int timeoutInSeconds) || timeoutInSeconds <= 0)
+            if (!int.TryParse(inputTimeout.ToString(), out int timeoutInSeconds) || timeoutInSeconds <= 0)
             {
                 MessageBox.Show("Please enter a valid timeout value.");
                 return;
@@ -298,8 +347,8 @@ namespace LoadTesting
             helpMessage.AppendLine("User Guide for Load Testing:");
             helpMessage.AppendLine();
             helpMessage.AppendLine("1. Enter the target URL in the URL column.");
-            helpMessage.AppendLine("2. Set the number of requests using the numeric up-down control.");
-            helpMessage.AppendLine("3. Set the timeout value (maximum time allowed for each request) using the numeric up-down control.");
+            helpMessage.AppendLine("2. Enter the number of requests in the Number of Request column (maximum 8 digits).");
+            helpMessage.AppendLine("3. Enter the timeout value (maximum time allowed for each request) in the Timeout column (maximum 5 digits).");
             helpMessage.AppendLine("4. Click the 'Start' button to initiate the load testing.");
             helpMessage.AppendLine("5. Monitor real-time CPU and RAM of the computer usage during the test in the output area.");
             helpMessage.AppendLine("6. After the test, the output will display:");
@@ -313,6 +362,8 @@ namespace LoadTesting
             helpMessage.AppendLine("      - Round Number.");
             helpMessage.AppendLine("7. Optionally, export the load testing results to a CSV file using the 'Export' button. The result will display all the evaluation data for each round.");
             helpMessage.AppendLine("8. Click the 'Clear' button to clear the output area and reset the test.");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("Note: Ensure that your internet connection is stable and reliable for conducting this test.");
 
             return helpMessage.ToString();
         }
@@ -376,9 +427,9 @@ namespace LoadTesting
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Export hasil uji beban saat ini ke file CSV
-            if (roundNumbers.Any()) // Periksa apakah roundNumbers tidak kosong sebelum menggunakan Last()
+            if (roundNumbers.Any()) // Periksa apakah roundNumbers tidak kosong
             {
-                ShowExportDialog(allLoadTestResults, roundNumbers.Last(), currentEvaluationData, allEvaluatedData);
+                ShowExportDialog(allLoadTestResults, allEvaluatedData);
             }
             else
             {
@@ -386,7 +437,7 @@ namespace LoadTesting
             }
         }
 
-        private void ShowExportDialog(List<LoadTestResult> results, int roundNumber, EvaluationData currentEvaluationData, List<EvaluationData> allEvaluatedData)
+        private void ShowExportDialog(List<LoadTestResult> results, List<EvaluationData> allEvaluatedData)
         {
             // Tampilkan dialog SaveFileDialog
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -398,7 +449,7 @@ namespace LoadTesting
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     // Ekspor data ke file CSV
-                    ExportToCsv(results, roundNumber, currentEvaluationData, allEvaluatedData, saveFileDialog.FileName);
+                    ExportToCsv(results, allEvaluatedData, saveFileDialog.FileName);
 
                     // Jalankan evaluasi setelah mengekspor data
                     EvaluateLoadTestResults();
@@ -409,7 +460,7 @@ namespace LoadTesting
             }
         }
 
-        private void ExportToCsv(List<LoadTestResult> results, int roundNumber, EvaluationData currentEvaluationData, List<EvaluationData> allEvaluatedData, string filePath)
+        private void ExportToCsv(List<LoadTestResult> results, List<EvaluationData> allEvaluatedData, string filePath)
         {
             if (results == null || results.Count == 0)
             {
@@ -431,7 +482,7 @@ namespace LoadTesting
                 csvContent.AppendLine($"Load Testing");
                 csvContent.AppendLine();
 
-                csvContent.AppendLine($"The Load Testing Result of URL:,{inputUrl.Text}");
+                csvContent.AppendLine($"The Load Testing Result of URL:,{textBoxInputUrl.Text}");
                 csvContent.AppendLine();
 
                 // Tambahkan header CSV sesuai dengan urutan kolom yang diinginkan
@@ -472,11 +523,15 @@ namespace LoadTesting
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            textBoxInputUrl.Clear();
+            textBoxInputRequest.Clear();
+            textBoxInputTimeout.Clear();
             outputTextBox.Clear();
             allEvaluatedData.Clear();
             allLoadTestResults.Clear();
             roundNumbers.Clear();
             currentRoundNumber = 1;
+            currentEvaluationRoundNumber = 1;
         }
     }
 
